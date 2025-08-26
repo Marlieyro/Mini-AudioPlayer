@@ -6,7 +6,7 @@ import dataStorage.AudioTrack;
 import java.util.ArrayList;
 import java.util.List;
 
-/* Class description:
+/** Class description:
    Клас презначений формувати специфічні плей-листи для програвання.
    Ці плей-листи передаються у SimplePLayer який бере з них треки й програє.
    AudioCatalog є постачальником усіх пісень які є в програмі.
@@ -27,7 +27,7 @@ import java.util.List;
    Недоліки:
    - Коли в AudioCatalog попадає нова пісня цей клас не має нового списку пісень
    з цією піснею доки не буде створений новий екземпляр.
-* */
+* I**/
 
 // А якщо користувач захоче кастомний плей ліст стоврити? то як я його зебережу в программі
 public class PlayListFactory {
@@ -38,8 +38,8 @@ public class PlayListFactory {
         this.original = AudioCatalog.getInstance().getCatalog();
     }
 
-    /* Надання оригінального списку пісень в оригінальній послідовності, для програвання
-    "з коробки".*/
+    /** Надання оригінального списку пісень в оригінальній послідовності, для програвання
+    "з коробки".**/
     public RawPlayList createRawList(){
         return new RawPlayList(new ArrayList<>(original));
     }

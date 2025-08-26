@@ -6,10 +6,10 @@ package audioPlayerComp;
  */
 
 // Public тут це херновий дизайн.
-public interface PlayerComponent<T> {
+public interface PlayerComponent{
 
     void execute(SimplePlayer.PlayerContext playerContext);
-    T getComponent();
+
 
 
 }

@@ -5,7 +5,7 @@ import audioPlayerComp.PlayerComponent;
 import audioPlayerComp.SimplePlayer;
 import uk.co.caprica.vlcj.player.component.AudioPlayerComponent;
 
-public class ChangePosition implements PlayerComponent<ChangePosition> {
+public class ChangePosition implements PlayerComponent{
     private final AudioPlayerComponent audioPlayerComponent;
 
     public ChangePosition(AudioPlayerComponent component){
@@ -18,8 +18,4 @@ public class ChangePosition implements PlayerComponent<ChangePosition> {
         audioPlayerComponent.mediaPlayer().controls().setTime(newTime);
     }
 
-    @Override
-    public ChangePosition getComponent() {
-        return this;
-    }
 }

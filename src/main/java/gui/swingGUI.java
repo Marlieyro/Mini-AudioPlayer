@@ -1,5 +1,7 @@
 package gui;
+import audioPlayerComp.AudioPlayerInstance;
 import audioPlayerComp.SimplePlayer;
+import audioPlayerCompV2.PlayerStation;
 import dataSource.SaveLoadJS;
 import dataStorage.AudioCatalog;
 import playLists.PlayListFactory;
@@ -15,7 +17,7 @@ public class swingGUI extends JFrame  {
         // Змінні логіки
         AudioCatalog audioCatalog;
         PlayListFactory playListFactory;
-        SimplePlayer simplePlayer;
+        PlayerStation playerStation;
 
         // -----------------------------------
         boolean dragSlider = false;
@@ -37,11 +39,11 @@ public class swingGUI extends JFrame  {
                 throw new RuntimeException(e);
             }
             PlayListFactory playListFactory = new PlayListFactory();
-            simplePlayer = new SimplePlayer(playListFactory.createRawList());
+            playerStation = new PlayerStation(playListFactory.createRawList(), AudioPlayerInstance.getAudioPlayerComponent());
         }
 
         private void updateSlider(){
-            if (!dragSlider && )
+            // if (!dragSlider && )
         }
 
         public swingGUI() {
@@ -98,7 +100,7 @@ public class swingGUI extends JFrame  {
                 simplePlayer.play();
             });*/
             // Кнопка play/pause: змінюємо її вигляд при кліку
-            simplePlayer.setSongPositionInList(0);
+
             playPauseButton.addActionListener(e -> {
                 isPlaying = !isPlaying;
                 if (isPlaying) {
@@ -106,11 +108,11 @@ public class swingGUI extends JFrame  {
                     playPauseButton.setText("❚❚"); // Символ паузи
                     // Тут має бути виклик вашого контролера для початку відтворення
                     //thread.start();
-                    simplePlayer.play();
+                    playerStation.play();
                 } else {
                     // Логіка для "Pause"
                     playPauseButton.setText("▶");// Символ відтворення
-                    simplePlayer.pause();
+                    playerStation.pause();
                     /*Thread thread1 = new Thread(() -> {
                         simplePlayer.pause();
                     });
@@ -119,8 +121,8 @@ public class swingGUI extends JFrame  {
             });
 
             // Інші кнопки
-            prevButton.addActionListener(e -> simplePlayer.prevSong());
-            nextButton.addActionListener(e -> simplePlayer.nextSong());
+            prevButton.addActionListener(e -> playerStation.prevSong());
+            nextButton.addActionListener(e -> playerStation.nextSong());
 
             // Нижній блок: повзунок пісні та гучності
             JPanel bottomPanel = new JPanel(new BorderLayout(10, 0));
@@ -145,7 +147,7 @@ public class swingGUI extends JFrame  {
                     if (songSlider.getValueIsAdjusting()){
                         dragSlider = true;
                     } else if (dragSlider) {
-                        simplePlayer.changeTrackPos(songSlider.getValue());
+                        // simplePlayer.changeTrackPos(songSlider.getValue());
                         dragSlider = false;
                     }
                 }
@@ -162,7 +164,7 @@ public class swingGUI extends JFrame  {
             volumeSlider.addChangeListener(new ChangeListener() {
                 @Override
                 public void stateChanged(ChangeEvent e) {
-                    simplePlayer.changeVolume(volumeSlider.getValue());
+                    playerStation.changeVolume(volumeSlider.getValue());
                 }
             });
 

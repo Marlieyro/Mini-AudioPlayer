@@ -22,9 +22,12 @@ import java.util.List;
  * Контролер живе стільки, стільки живе плей-лист.
  *     Треба брати контролер у плей листа.
  *     Для кожного плей листа новий контролер.
+ *
+ * Цей клас є public оскільки без цього при отриманні getPlayListController()
+ * Ми не можемо передати цей контролер у зміну контролера.
  */
 
-class PlayListController implements Subscriber<AudioTrack> {
+public class PlayListController implements Subscriber<AudioTrack> {
 
     private final List<AudioTrack> listOfSongs;
 
